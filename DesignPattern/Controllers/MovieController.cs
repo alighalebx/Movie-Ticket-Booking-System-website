@@ -66,15 +66,21 @@ namespace DesignPattern.Controllers
         }
         [HttpGet("get shows")]
         public async Task<IActionResult> returnshows(String name)
-
-
         {
-            var namee = movieTicketSystemContext.Movies.Where(s => s.Name!.Contains(name)). Select(s => s.MoiveId);
-            var ay7aga = movieTicketSystemContext.Shows.Where(s => s.MovieId.Equals(namee));
-
-            //var id = from Movie in movieTicketSystemContext.Movies select Movie.MoiveId;
-            //var dee = id.Where(name.Equals(movieTicketSystemContext.
-            return Ok(ay7aga);
+            //var moviename = movieTicketSystemContext.Movies.Select(s => s.Name==name);
+            var moviename = from a in movieTicketSystemContext.Shows
+                            join b in movieTicketSystemContext.Movies
+                            on a.MovieId equals b.MoiveId
+                            where b.Name == name
+                            select new
+                            {
+                                MovieId = a.MovieId,
+                                showid = a.ShowId,
+                                starttime = a.StartTime,
+                                endtime = a.EndTime,
+                                hallid = a.CinemaHallId
+                            };
+            return Ok(moviename);
 
         }
 
