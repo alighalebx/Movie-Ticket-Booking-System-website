@@ -10,7 +10,7 @@ public partial class ShowSeat
     public int Status { get; set; }
 
     public int Price { get; set; }
-
+    
     public int CinemaSeatId { get; set; }
 
     public int ShowId { get; set; }
