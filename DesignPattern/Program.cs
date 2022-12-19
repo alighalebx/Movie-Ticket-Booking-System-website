@@ -1,5 +1,5 @@
 using DesignPattern;
-using FluentAssertions.Common;
+//using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,13 +14,13 @@ builder.Services.AddCors();
 
 builder.Services.AddSwaggerGen();
 
-    var emailConfig = Configuration
-            .GetSection("EmailConfiguration")
-            .Get<EmailConfiguration>();
-    builder.Services.AddSingleton(emailConfig);
+//    var emailConfig = Configuration
+//            .GetSection("EmailConfiguration")
+//            .Get<EmailConfiguration>();
+//    builder.Services.AddSingleton(emailConfig);
 
 
-Services.Configure<EmailConfiguration>(Configuration.GetSection("MailSettings"));
+//Services.Configure<EmailConfiguration>(Configuration.GetSection("MailSettings"));
 
 
 builder.Services.AddControllers();
@@ -45,3 +45,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+

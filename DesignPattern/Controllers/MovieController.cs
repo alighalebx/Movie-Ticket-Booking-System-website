@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using MimeKit;
+using MimeKit.Text;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 
 namespace DesignPattern.Controllers
 {
@@ -194,6 +198,31 @@ namespace DesignPattern.Controllers
 
 
             }
+
+
+        [HttpPost ("Email")]
+        public async Task<IActionResult> SendEmail(string Emaill)
+       
+        {
+
+            string body = "Your booking is succeufly done";
+            string emailll = "alighaleb2001@gmail.com";
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("alighaleb2001@gmail.com"));
+            email.To.Add(MailboxAddress.Parse(emailll));
+            email.Subject = "Test Email Subject";
+            email.Body = new TextPart(TextFormat.Text) { Text = body };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("alighaleb2001@gmail.com", "gvfljihvlqvlzxhk");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
+            return Ok();
+
+        }
+
+
 
         }
 

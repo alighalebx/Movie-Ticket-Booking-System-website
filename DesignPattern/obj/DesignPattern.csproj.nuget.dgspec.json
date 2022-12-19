@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {}
+    "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {}
   },
   "projects": {
-    "D:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {
+    "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
+        "projectUniqueName": "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
         "projectName": "DesignPattern",
-        "projectPath": "D:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
-        "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-        "outputPath": "D:\\Movie-Ticket-Booking-System-website\\DesignPattern\\obj\\",
+        "projectPath": "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
+        "packagesPath": "C:\\Users\\Nano\\.nuget\\packages\\",
+        "outputPath": "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nano\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,10 +40,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "FluentAssertions": {
-              "target": "Package",
-              "version": "[6.8.0, )"
-            },
             "MailKit": {
               "target": "Package",
               "version": "[3.4.3, )"
@@ -62,17 +58,9 @@
               "target": "Package",
               "version": "[7.0.1, )"
             },
-            "NETCore.MailKit": {
-              "target": "Package",
-              "version": "[2.1.0, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
-            },
-            "System.Configuration.ConfigurationManager": {
-              "target": "Package",
-              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -81,7 +69,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -93,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
