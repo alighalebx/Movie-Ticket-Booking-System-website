@@ -46,7 +46,8 @@ public partial class MovieTicketSystemContext : DbContext
         modelBuilder.Entity<Booking>(entity =>
         {
             entity.ToTable("Booking");
-
+            
+           
             entity.Property(e => e.BookingId)
                 .ValueGeneratedNever()
                 .HasColumnName("BookingID");

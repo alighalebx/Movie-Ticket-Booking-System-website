@@ -1,4 +1,5 @@
 using DesignPattern;
+using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 
 builder.Services.AddSwaggerGen();
+
+    var emailConfig = Configuration
+            .GetSection("EmailConfiguration")
+            .Get<EmailConfiguration>();
+    builder.Services.AddSingleton(emailConfig);
+
+
+Services.Configure<EmailConfiguration>(Configuration.GetSection("MailSettings"));
+
+
+builder.Services.AddControllers();
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<MovieTicketSystemContext>(Options=>Options.UseSqlServer(connection));
 

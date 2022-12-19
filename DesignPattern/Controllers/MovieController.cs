@@ -144,25 +144,53 @@ namespace DesignPattern.Controllers
 
         }
         [HttpPut("choose seat")]
-        public async Task<IActionResult> chooseseats(int seatid,[FromForm]seatsdto seatsdto)
+        public async Task<IActionResult> chooseseats(int seatid)
         {
-            var check=movieTicketSystemContext.ShowSeats.Select(a=>a.Status).ToList();
-            //var seats=movieTicketSystemContext.ShowSeats.Where(b=>b.CinemaSeatId==seatid).ToList();
-            var s = movieTicketSystemContext.ShowSeats.Find(seatid);
-            
-            if (check.Equals (1))
+            var seat = movieTicketSystemContext.ShowSeats.Where(a => a.CinemaSeatId == seatid).Select(a => a.Status);
+            var f = (from a in movieTicketSystemContext.ShowSeats
+                     where a.CinemaSeatId == seatid
+                     select a).FirstOrDefault();
+            if (seat.Contains(0))
             {
                 return Ok("This seat is reserved");
             }
             else
             {
-                //s.CinemaSeatId = 1;
-                //movieTicketSystemContext.SaveChanges();
-                //return Ok("done");
-                s.Status=seatsdto.Status;
+                f.Status = 0;
                 movieTicketSystemContext.SaveChanges();
-                return Ok(s);
+                return Ok("done");
 
+            }
+
+
+
+
+            return Ok();
+
+
+
+
+        }
+
+        [HttpPost("f")]
+        public async Task<IActionResult> chooseseat([FromForm]seatsdto dto)
+        {
+
+                var queueDataTable = movieTicketSystemContext.Bookings;
+                var lastDataRow = queueDataTable.AsEnumerable().Last();
+                movieTicketSystemContext.Add(new Booking()
+                {
+                    BookingId = lastDataRow.BookingId + 1,
+                    NumberOfSeats = dto.NumberOfSeats,
+                    Timestamp = dto.Timestamp,
+                    Status = dto.Status,
+                    UserId = dto.UserId,
+                });
+
+
+
+                movieTicketSystemContext.SaveChanges();
+                return Ok();
 
 
             }
@@ -172,4 +200,4 @@ namespace DesignPattern.Controllers
 
 
     }
-}
+
