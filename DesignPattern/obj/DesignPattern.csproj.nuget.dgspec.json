@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {}
+    "E:\\Test\\DP project\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {}
   },
   "projects": {
-    "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {
+    "E:\\Test\\DP project\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
+        "projectUniqueName": "E:\\Test\\DP project\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
         "projectName": "DesignPattern",
-        "projectPath": "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
-        "packagesPath": "C:\\Users\\Nano\\.nuget\\packages\\",
-        "outputPath": "C:\\Movie-Ticket-Booking-System-website\\DesignPattern\\obj\\",
+        "projectPath": "E:\\Test\\DP project\\Movie-Ticket-Booking-System-website\\DesignPattern\\DesignPattern.csproj",
+        "packagesPath": "C:\\Users\\SIGMA\\.nuget\\packages\\",
+        "outputPath": "E:\\Test\\DP project\\Movie-Ticket-Booking-System-website\\DesignPattern\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Nano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SIGMA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -82,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

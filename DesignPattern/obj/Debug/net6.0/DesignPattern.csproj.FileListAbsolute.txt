@@ -411,3 +411,6 @@ C:\Movie-Ticket-Booking-System-website\DesignPattern\obj\Debug\net6.0\ref\Design
 C:\Movie-Ticket-Booking-System-website\DesignPattern\bin\Debug\net6.0\MailKit.dll
 C:\Movie-Ticket-Booking-System-website\DesignPattern\bin\Debug\net6.0\MimeKit.dll
 C:\Movie-Ticket-Booking-System-website\DesignPattern\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+E:\Test\DP project\Movie-Ticket-Booking-System-website\DesignPattern\bin\Debug\net6.0\MailKit.dll
+E:\Test\DP project\Movie-Ticket-Booking-System-website\DesignPattern\bin\Debug\net6.0\MimeKit.dll
+E:\Test\DP project\Movie-Ticket-Booking-System-website\DesignPattern\bin\Debug\net6.0\BouncyCastle.Crypto.dll

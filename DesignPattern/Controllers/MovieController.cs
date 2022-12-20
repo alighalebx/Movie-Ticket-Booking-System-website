@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using DesignPattern.Dtos;
 using MimeKit;
 using MimeKit.Text;
 using MailKit.Net.Smtp;
@@ -222,6 +223,34 @@ namespace DesignPattern.Controllers
 
         }
 
+
+
+        [HttpPost("addMovie")]
+        public async Task<IActionResult> addMovie(CreateMovieDto dto)
+        {
+
+
+            var queueDataTable = movieTicketSystemContext.Movies;
+            var lastDataRow = queueDataTable.AsEnumerable().Last();
+            var movie = new Movie
+            {
+                Name = dto.Name,
+                Descreption = dto.Descreption,
+                Duration = dto.Duration,
+                Language = dto.Language,
+                Realeasedate = dto.Realeasedate,
+                Country = dto.Country,
+                Genre = dto.Genre,
+                MoiveId = lastDataRow.MoiveId + 1
+                
+
+            };
+            await movieTicketSystemContext.Movies.AddAsync(movie);
+            movieTicketSystemContext.SaveChanges();
+            return Ok(movie);
+
+        }
+        
 
 
         }
