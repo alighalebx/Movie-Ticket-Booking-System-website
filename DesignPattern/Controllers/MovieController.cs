@@ -7,6 +7,7 @@ using MimeKit;
 using MimeKit.Text;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using MimeKit.Encodings;
 
 namespace DesignPattern.Controllers
 {
@@ -151,6 +152,10 @@ namespace DesignPattern.Controllers
         [HttpPut("choose seat")]
         public async Task<IActionResult> chooseseats(int seatid)
         {
+
+
+            //var timeOfShow = movieTicketSystemContext.
+            
             var seat = movieTicketSystemContext.ShowSeats.Where(a => a.CinemaSeatId == seatid).Select(a => a.Status);
             var f = (from a in movieTicketSystemContext.ShowSeats
                      where a.CinemaSeatId == seatid
@@ -162,6 +167,24 @@ namespace DesignPattern.Controllers
             else
             {
                 f.Status = 0;
+                //f.BookingId = B
+                var queueDataTable = movieTicketSystemContext.Bookings;
+                var lastDataRow = queueDataTable.AsEnumerable().Last();
+
+                var showIdSeat = movieTicketSystemContext.ShowSeats.Where(y => y.ShowSeatId == seatid)
+                    .Select(y => y.ShowId).FirstOrDefault();
+
+                movieTicketSystemContext.Add(new Booking()
+                {
+                    BookingId = lastDataRow.BookingId + 1,
+                    NumberOfSeats = 1,
+                    Timestamp = DateTime.Now,
+                    UserId = 1,
+                    ShowId = showIdSeat
+
+                });
+
+
                 movieTicketSystemContext.SaveChanges();
                 return Ok("done");
 
