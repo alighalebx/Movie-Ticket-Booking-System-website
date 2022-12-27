@@ -200,6 +200,71 @@ namespace DesignPattern.Controllers
 
         }
 
+
+        [HttpPost("AddNewPayment")]
+        public async Task<IActionResult> newPayment([FromForm] PaymentDto dto)
+        {
+
+            var queueDataTable = movieTicketSystemContext.Payments;
+            var lastDataRow = queueDataTable.AsEnumerable().Last();
+
+            //var timePayment = movieTicketSystemContext.ShowSeats.Where(y => y.ShowSeatId == seatid)
+            //    .Select(y => y.ShowId).FirstOrDefault();
+            var amount = 0;
+            if (dto.DiscountCouponId == 25)
+            {
+                amount = 25;
+            }
+            else
+            {
+                amount = 50;
+            }
+            var payment = new Payment()
+            {
+                PaymentId = lastDataRow.PaymentId + 1,
+                DiscountCouponId = dto.DiscountCouponId,
+                Amount = amount,
+                Timestamp = dto.Timestamp,
+                PaymentMethod = dto.PaymentMethod,
+                BookingId = dto.BookingId
+            };
+            await movieTicketSystemContext.Payments.AddAsync(payment);
+            movieTicketSystemContext.SaveChanges();
+            return Ok("done");
+
+
+
+            //var queueDataTable = movieTicketSystemContext.Movies;
+            //var lastDataRow = queueDataTable.AsEnumerable().Last();
+            //var movie = new Movie
+            //{
+            //    Name = dto.Name,
+            //    Descreption = dto.Descreption,
+            //    Duration = dto.Duration,
+            //    Language = dto.Language,
+            //    Realeasedate = dto.Realeasedate,
+            //    Country = dto.Country,
+            //    Genre = dto.Genre,
+            //    MoiveId = lastDataRow.MoiveId + 1
+
+
+            //};
+            //await movieTicketSystemContext.Movies.AddAsync(movie);
+            //movieTicketSystemContext.SaveChanges();
+            //return Ok(movie);
+
+
+        }
+
+
+
+
+
+
+
+
+
+
         [HttpPost("f")]
         public async Task<IActionResult> chooseseat([FromForm]seatsdto dto)
         {
