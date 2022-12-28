@@ -230,6 +230,21 @@ namespace DesignPattern.Controllers
                 PaymentMethod = dto.PaymentMethod,
                 BookingId = dto.BookingId
             };
+
+            string body = "Your payment is sucessfuly done";
+            string emailll = "alighaleb2001@gmail.com";
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("alighaleb2001@gmail.com"));
+            email.To.Add(MailboxAddress.Parse(emailll));
+            email.Subject = "Test Email Subject";
+            email.Body = new TextPart(TextFormat.Text) { Text = body };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("alighaleb2001@gmail.com", "gvfljihvlqvlzxhk");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
+            return Ok();
             await movieTicketSystemContext.Payments.AddAsync(payment);
             movieTicketSystemContext.SaveChanges();
             return Ok("done");
@@ -313,7 +328,21 @@ namespace DesignPattern.Controllers
 
         }
 
+        [HttpGet("login")]
+        public async Task<IActionResult>login(string email, string password)
+        {
+            var display = movieTicketSystemContext.Users.Where(m => m.Email == email && m.Password == password).FirstOrDefault();
+            if (display == null)
+            {
+                return BadRequest("Incorrect username or password please check your enteries");
+            }
+            else
+            {
+                return Ok("welcome to your account");
+            }
 
+         
+        }
 
         [HttpPost("addMovie")]
         public async Task<IActionResult> addMovie(CreateMovieDto dto)
