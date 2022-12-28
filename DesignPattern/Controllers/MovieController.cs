@@ -15,7 +15,9 @@ namespace DesignPattern.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private readonly MovieTicketSystemContext movieTicketSystemContext;
+        private readonly MovieTicketSystemContext movieTicketSystemContext = MovieTicketSystemContext.SingleInstance();
+
+        
 
         public MovieController(MovieTicketSystemContext movieTicketSystemContext)
         {
@@ -316,26 +318,68 @@ namespace DesignPattern.Controllers
         [HttpPost("addMovie")]
         public async Task<IActionResult> addMovie(CreateMovieDto dto)
         {
-
-
-            var queueDataTable = movieTicketSystemContext.Movies;
-            var lastDataRow = queueDataTable.AsEnumerable().Last();
-            var movie = new Movie
+            try
             {
-                Name = dto.Name,
-                Descreption = dto.Descreption,
-                Duration = dto.Duration,
-                Language = dto.Language,
-                Realeasedate = dto.Realeasedate,
-                Country = dto.Country,
-                Genre = dto.Genre,
-                MoiveId = lastDataRow.MoiveId + 1
+
+                var queueDataTable = movieTicketSystemContext.Movies;
+                var lastDataRow = queueDataTable.AsEnumerable().Last();
+                var movie = new Movie
+                {
+                    Name = dto.Name,
+                    Descreption = dto.Descreption,
+                    Duration = dto.Duration,
+                    Language = dto.Language,
+                    Realeasedate = dto.Realeasedate,
+                    Country = dto.Country,
+                    Genre = dto.Genre,
+                    MoiveId = lastDataRow.MoiveId + 1
+
+
+                };
+                await movieTicketSystemContext.Movies.AddAsync(movie);
+                movieTicketSystemContext.SaveChanges();
+
+
+                var queueDataTable1 = movieTicketSystemContext.Shows;
+                var lastDataRow1 = queueDataTable1.AsEnumerable().Last();
+
+
+                TimeSpan time = new TimeSpan(36, 0, 0, 0);
+
+                var show = new Show
+                {
+                    ShowId = lastDataRow1.ShowId + 1,
+                    Date = "10/12/2001",
+                    StartTime = "13",
+                    EndTime = "14",
+                    CinemaHallId = 1,
+                    MovieId = movie.MoiveId
+
+
+                };
+                await movieTicketSystemContext.Shows.AddAsync(show);
+                movieTicketSystemContext.SaveChanges();
+
+
+                Show copy = show.showClone("15/12/2001",show.ShowId+1);
+                Show copy1 = show.showClone("16/12/2001",show.ShowId + 2);
+                Show copy2 = show.showClone("17/12/2001", show.ShowId + 3);
                 
 
-            };
-            await movieTicketSystemContext.Movies.AddAsync(movie);
-            movieTicketSystemContext.SaveChanges();
-            return Ok(movie);
+                
+
+                await movieTicketSystemContext.Shows.AddAsync(copy);
+                movieTicketSystemContext.SaveChanges();
+                await movieTicketSystemContext.Shows.AddAsync(copy1);
+                movieTicketSystemContext.SaveChanges();
+                await movieTicketSystemContext.Shows.AddAsync(copy2);
+                movieTicketSystemContext.SaveChanges();
+                return Ok(movie);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
         }
         

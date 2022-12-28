@@ -14,6 +14,10 @@ public partial class MovieTicketSystemContext : DbContext
         : base(options)
     {
     }
+    private static MovieTicketSystemContext single_instance = null;
+
+
+
 
     public virtual DbSet<Booking> Bookings { get; set; }
 
@@ -24,6 +28,11 @@ public partial class MovieTicketSystemContext : DbContext
     public virtual DbSet<CinemaSeat> CinemaSeats { get; set; }
 
     public virtual DbSet<City> Cities { get; set; }
+
+    City c = City.SingleInstance();
+    
+
+    
 
     public virtual DbSet<Movie> Movies { get; set; }
 
@@ -39,8 +48,8 @@ public partial class MovieTicketSystemContext : DbContext
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
        // => optionsBuilder.UseSqlServer("Data Source=DESKTOP-6UUU5I4\\SQLEXPRESS;Initial Catalog=Movie ticket system;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
-      => optionsBuilder.UseSqlServer("Data Source=NANO;Initial Catalog=\"Movie ticket system\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-  // => optionsBuilder.UseSqlServer("Data Source=DESKTOP-EARDOI5;Initial Catalog=\"Movie ticket system\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+     // => optionsBuilder.UseSqlServer("Data Source=NANO;Initial Catalog=\"Movie ticket system\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+   => optionsBuilder.UseSqlServer("Data Source=DESKTOP-EARDOI5;Initial Catalog=\"Movie ticket system\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -260,6 +269,14 @@ public partial class MovieTicketSystemContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+    public static MovieTicketSystemContext SingleInstance()
+    {
+        if (single_instance == null)
+        {
+            single_instance = new MovieTicketSystemContext();
 
+        }
+        return single_instance;
+    }
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
