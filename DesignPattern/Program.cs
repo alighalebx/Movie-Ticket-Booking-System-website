@@ -1,6 +1,4 @@
-using DesignPattern;
-//using FluentAssertions.Common;
-using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

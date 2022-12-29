@@ -4,7 +4,6 @@
     {
         public int DiscountCouponId { get; set; }
 
-        public DateTime Timestamp { get; set; }
 
         public int PaymentMethod { get; set; }
 

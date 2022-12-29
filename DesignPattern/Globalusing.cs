@@ -1,0 +1,11 @@
+﻿global using MimeKit;
+global using MimeKit.Text;
+global using MailKit.Net.Smtp;
+global using MailKit.Security;
+global using MimeKit.Encodings;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using System.Linq;
+global using DesignPattern.Dtos;
+global using DesignPattern;
