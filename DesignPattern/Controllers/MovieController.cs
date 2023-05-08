@@ -405,6 +405,7 @@
                         Realeasedate = dto.Realeasedate,
                         Country = dto.Country,
                         Genre = dto.Genre,
+                        Poster = dto.Poster,
                         MoiveId = lastDataRow.MoiveId + 1
 
 

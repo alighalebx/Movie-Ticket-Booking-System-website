@@ -12,6 +12,8 @@
 
         public string Realeasedate { get; set; } = null!;
 
+        public string Poster { get; set; } = null;
+
         public string Country { get; set; } = null!;
 
         public string Genre { get; set; } = null!;

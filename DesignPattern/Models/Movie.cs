@@ -18,6 +18,9 @@ public partial class Movie
 
     public string Genre { get; set; } = null!;
 
+    public string Poster { get; set; } = null!;
+
+
     public int MoiveId { get; set; }
 
     public virtual ICollection<Show> Shows { get; } = new List<Show>();
